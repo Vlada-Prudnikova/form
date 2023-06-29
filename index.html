@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Form</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 5px;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Registration Form</h1>
+    <form id="registrationForm">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" required /><br /><br />
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" required /><br /><br />
+
+      <label for="dateOfBirth">Date of Birth:</label>
+      <input type="text" id="dateOfBirth" required /><br /><br />
+
+      <label>Gender:</label>
+      <input type="radio" id="male" name="gender" value="Male" required />
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="Female" required />
+      <label for="female">Female</label>
+      <input type="radio" id="secret" name="gender" value="secret" required />
+      <label for="secret">I do not want to tell</label><br /><br />
+
+      <label for="city">City:</label>
+      <select id="city" required>
+        <option value="">Select City</option>
+        <option value="New York">New York</option>
+        <option value="London">London</option>
+        <option value="Paris">Paris</option>
+        <option value="Kyiv">Kyiv</option>
+        <option value="Ottawa">Ottawa</option>
+        <option value="Warsaw">Warsaw</option></select
+      ><br /><br />
+
+      <label for="address">Address:</label><br />
+      <textarea id="address" required></textarea><br /><br />
+
+      <label>Languages:</label><br />
+      <input type="checkbox" id="english" name="language" value="English" />
+      <label for="english">English</label><br />
+      <input type="checkbox" id="spanish" name="language" value="Spanish" />
+      <label for="spanish">Spanish</label><br />
+      <input type="checkbox" id="ukrainian" name="language" value="Ukrainian" />
+      <label for="ukrainian">Ukrainian</label><br />
+      <input type="checkbox" id="french" name="language" value="French" />
+      <label for="french">French</label><br /><br />
+
+      <button type="button" onclick="displayFormData()">Save</button>
+    </form>
+
+    <div id="tableData"></div>
+    <script>
+      function displayFormData() {
+        let firstName = document.getElementById("firstName").value;
+        let lastName = document.getElementById("lastName").value;
+        let dateOfBirth = document.getElementById("dateOfBirth").value;
+        let gender = document.querySelector(
+          'input[name="gender"]:checked'
+        ).value;
+        let city = document.getElementById("city").value;
+        let address = document.getElementById("address").value;
+
+        let languages = document.querySelectorAll(
+          'input[name="language"]:checked'
+        );
+        let selectedLanguages = [];
+        for (let i = 0; i < languages.length; i++) {
+          selectedLanguages.push(languages[i].value);
+        }
+
+        let tableData = document.getElementById("tableData");
+        tableData.innerHTML = "";
+
+        let table = document.createElement("table");
+
+        let row1 = table.insertRow();
+        let inf1 = row1.insertCell();
+        let inf2 = row1.insertCell();
+        inf1.innerHTML = "<strong>First Name:</strong>";
+        inf2.innerHTML = firstName;
+
+        let row2 = table.insertRow();
+        let inf3 = row2.insertCell();
+        let inf4 = row2.insertCell();
+        inf3.innerHTML = "<strong>Last Name:</strong>";
+        inf4.innerHTML = lastName;
+
+        let row3 = table.insertRow();
+        let inf5 = row3.insertCell();
+        let inf6 = row3.insertCell();
+        inf5.innerHTML = "<strong>Date of Birth:</strong>";
+        inf6.innerHTML = dateOfBirth;
+
+        let row4 = table.insertRow();
+        let inf7 = row4.insertCell();
+        let inf8 = row4.insertCell();
+        inf7.innerHTML = "<strong>Gender:</strong>";
+        inf8.innerHTML = gender;
+
+        let row5 = table.insertRow();
+        let inf9 = row5.insertCell();
+        let inf10 = row5.insertCell();
+        inf9.innerHTML = "<strong>City:</strong>";
+        inf10.innerHTML = city;
+
+        let row6 = table.insertRow();
+        let inf11 = row6.insertCell();
+        let inf12 = row6.insertCell();
+        inf11.innerHTML = "<strong>Address:</strong>";
+        inf12.innerHTML = address;
+
+        let row7 = table.insertRow();
+        let inf13 = row7.insertCell();
+        let inf14 = row7.insertCell();
+        inf13.innerHTML = "<strong>Languages:</strong>";
+        inf14.innerHTML = selectedLanguages.join(", ");
+
+        tableData.appendChild(table);
+        let form = document.getElementById("registrationForm");
+        form.classList.add("hidden");
+      }
+    </script>
+  </body>
+</html>
